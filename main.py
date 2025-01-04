@@ -21,6 +21,12 @@ paddle_height = 17
 brick_width = 150
 brick_height = 45
 
+paddle_speed = 8
+
+score = 0
+level = 1
+balls_left = 3
+
 player = Rect((WIDTH / 2, HEIGHT / 2 + 450), (paddle_width, paddle_height))
 cyan_brick_0 = Rect((0, 400), (brick_width, brick_height))
 cyan_brick_1 = Rect((155, 400), (brick_width, brick_height))
@@ -117,12 +123,6 @@ pink_brick_7 = Rect((155 * 7, 400 - 300), (brick_width, brick_height))
 pink_brick_8 = Rect((155 * 8, 400 - 300), (brick_width, brick_height))
 pink_brick_9 = Rect((155 * 9, 400 - 300), (brick_width, brick_height))
 pink_brick_10 = Rect((155 * 10, 400 - 300), (brick_width, brick_height))
-
-paddle_speed = 6
-
-score = 0
-level = 1
-balls_left = 3
 
 def draw():
     screen.clear()
@@ -243,5 +243,13 @@ def update():
 #To DO reset function
     if ball.bottom <= 0:
         pass
+
+    if ball.colliderect(player):
+        ball_speed[1] = -ball_speed[1]
+
+    if keyboard.a and player.left < WIDTH:
+        player.x -= paddle_speed
+    if keyboard.d and player.right > 0:
+        player.x += paddle_speed
 
 pgzrun.go()
