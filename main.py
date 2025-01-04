@@ -247,9 +247,12 @@ def update():
     if ball.colliderect(player):
         ball_speed[1] = -ball_speed[1]
 
-    if keyboard.a and player.left < WIDTH:
+    if ball.colliderect(cyan_brick_0) or ball.colliderect(cyan_brick_1) or ball.colliderect(cyan_brick_2):
+        pass
+
+    if keyboard.a and player.left >= 0:
         player.x -= paddle_speed
-    if keyboard.d and player.right > 0:
+    if keyboard.d and player.right <= WIDTH:
         player.x += paddle_speed
 
 pgzrun.go()
