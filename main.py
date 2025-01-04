@@ -60,13 +60,11 @@ def update():
         ball_speed[0] = -ball_speed[0]
     if ball.top <= 0:
         ball_speed[1] = -ball_speed[1]
+    if lives == 0:
+        print("You lost")
     if ball.bottom >= HEIGHT:
         lives -= 1
         reset()
-
-
-
-
     if ball.colliderect(player):
         ball_speed[1] = -ball_speed[1]
 
